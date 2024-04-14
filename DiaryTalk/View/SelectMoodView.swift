@@ -9,12 +9,6 @@ struct Emoji: Identifiable {
 
 struct SelectMoodView: View {
     
-    static let dateFormat: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 M월 d일 E요일"
-        return formatter
-    }()
-    
     var today = Date()
     
     // CollectionView

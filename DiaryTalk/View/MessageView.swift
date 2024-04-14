@@ -18,7 +18,7 @@ struct MessageView : View {
             } else {
                 Spacer()
             }
-            MessageCell(chat: Chat(chatMessage: currentMessage.content)//,
+            MessageCell(chat: Chat(chatMessage: currentMessage.content, chatTime: currentMessage.sendTime)//,
                         /*contentMessage: currentMessage.content,
                         isCurrentUser: currentMessage.isCurrentUser*/)
         }
