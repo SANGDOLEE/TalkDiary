@@ -123,7 +123,7 @@ struct MemoCellView: View {
                     .font(.system(size: 20))
                     .padding(.leading)
                     .bold()
-                    .foregroundColor(.green)
+                    .foregroundColor(Color(hex: 0xE2B100))
                     .lineLimit(1)
                 Spacer()
                 
@@ -149,7 +149,7 @@ struct MemoCellView: View {
         .padding(10)
         // .shadow(color: Color.blue.opacity(0.5), radius: 10, x: 0, y: 5)
         .background(Color.white)
-        .cornerRadius(20)
+        .cornerRadius(10)
         .padding(5)
         .contextMenu {
             Button(action: {

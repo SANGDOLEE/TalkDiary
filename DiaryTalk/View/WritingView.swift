@@ -9,6 +9,7 @@ struct WritingView: View {
     @State private var selectedEmoji = "" // 선택한 emoji 저장
     
     @Environment(\.modelContext) var modelContext
+  
     
     // Edit <-> Done
     @State private var doneStatus = true
@@ -22,13 +23,15 @@ struct WritingView: View {
     }()
     
     static let monthDayFormat: DateFormatter = {
-           let formatter = DateFormatter()
-           formatter.dateFormat = "M월 d일"
-           return formatter
-       }()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M월 d일"
+        return formatter
+    }()
     
     var today = Date()
     @State private var showModal = false // Mood 모달
+    
+    @State private var showAlert = false // alert
     
     // KeyBoard Tool bar
     @State private var text = ""
@@ -76,7 +79,7 @@ struct WritingView: View {
                         )
                         Text("\(today, formatter: WritingView.dateFormat)")
                             .environment(\.locale, Locale(identifier: "ko_KR"))
-                            .foregroundColor(Color(hex: 0x555555))
+                            .foregroundColor(.gray.opacity(0.7))
                         
                         
                     }
@@ -86,9 +89,9 @@ struct WritingView: View {
                             .padding()
                             .padding(.leading, 5)
                             .bold()
-                            .foregroundColor(.green)
+                            .foregroundColor(Color(hex: 0xE2B100))
                             .cornerRadius(10)
-                          
+                        
                         
                         TextEditor(text: $memoContent)
                             .scrollContentBackground(.hidden)
@@ -123,24 +126,32 @@ struct WritingView: View {
                 .toolbar {
                     
                     Button(action: {
-                        if(doneStatus == true){
-                            addMemo()
-                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) // 키보드를 숨깁니다.
+                        if doneStatus {
+                            if memoTitle.isEmpty && memoContent.isEmpty {
+                                showAlert = true
+                            } else {
+                                addMemo()
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                doneStatus.toggle()
+                                print("Memo Save : Done Tapped")
+                            }
                         } else {
                             print("\(doneStatus)")
                         }
-                        doneStatus.toggle()
-                        print("Memo Save : Done Tapped")
+                        
                         
                     }, label: {
                         Text(doneStatus ? "Done" : "Edit")
                             .bold()
                             .foregroundColor(Color(hex: 0xE2B100))
-                    })
+                    }).alert(isPresented: $showAlert) {
+                        Alert(title: Text("텍스트가 비어있습니다."), message: Text("제목 혹은 내용을 작성해주세요."), dismissButton: .default(Text("OK")))
+                    }
                     
                 }
             }
-        } .navigationBarBackButtonHidden(doneStatus) // doneStatus가 false일 때 뒤로 가기 버튼 나오게
+        } // .navigationBarBackButtonHidden(doneStatus) // doneStatus가 false일 때 뒤로 가기 버튼 나오게
+        
         
     }
     
