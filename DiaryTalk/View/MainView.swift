@@ -54,7 +54,7 @@ struct MainView: View {
                     .toolbarRole(.editor)
                 ) {
                     Image(systemName: "ellipsis.message")
-                        .foregroundColor(.blue)
+                        // .foregroundColor(.green)
                 }
                 
                 .toolbar {
@@ -69,7 +69,8 @@ struct MainView: View {
                                         Text("Add new")
                                             .foregroundColor(.black)
                                         Image(systemName: "plus")
-                                        Spacer()
+                                            
+                                        
                                     }
                                 }
                                 
@@ -78,6 +79,7 @@ struct MainView: View {
                                 }, label: {
                                     Text("Select")
                                     Image(systemName: "checkmark")
+                                    
                                 })
                                 
                                 NavigationLink(destination: SettingView()) {
@@ -85,7 +87,7 @@ struct MainView: View {
                                     Text("Setting")
                                         .foregroundColor(.black)
                                     Image(systemName: "gear")
-                                    Spacer()
+                                    
                                 }
                                 
                             }, label: {
@@ -99,7 +101,7 @@ struct MainView: View {
                 }
             })
         }
-        .searchable(text: $searchText, prompt: "Search")
+        .searchable(text: $searchText, prompt: "Search") // Search Bar
         
     }
     

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F01C8AC2BCBA433004192DB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F01C8AB2BCBA433004192DB /* ImagePicker.swift */; };
+		1F01C8AE2BCBA876004192DB /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F01C8AD2BCBA876004192DB /* Photo.swift */; };
+		1F01C8B02BCBA87D004192DB /* PhotoTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F01C8AF2BCBA87D004192DB /* PhotoTag.swift */; };
 		1F8131902BC7C835004E92CE /* DiaryTalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F81318F2BC7C835004E92CE /* DiaryTalkApp.swift */; };
 		1F8131922BC7C835004E92CE /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8131912BC7C835004E92CE /* CalenderView.swift */; };
 		1F8131942BC7C836004E92CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F8131932BC7C836004E92CE /* Assets.xcassets */; };
@@ -28,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F01C8AB2BCBA433004192DB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		1F01C8AD2BCBA876004192DB /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		1F01C8AF2BCBA87D004192DB /* PhotoTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTag.swift; sourceTree = "<group>"; };
 		1F81318C2BC7C835004E92CE /* DiaryTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F81318F2BC7C835004E92CE /* DiaryTalkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTalkApp.swift; sourceTree = "<group>"; };
 		1F8131912BC7C835004E92CE /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
@@ -130,6 +136,8 @@
 				1FCD1E282BCA66C70010EA4C /* Tag.swift */,
 				1FCD1E2A2BCAB3430010EA4C /* Chat.swift */,
 				1FCD1E2C2BCAB3A30010EA4C /* ChatTag.swift */,
+				1F01C8AD2BCBA876004192DB /* Photo.swift */,
+				1F01C8AF2BCBA87D004192DB /* PhotoTag.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -137,6 +145,7 @@
 		1FF0C2DD2BC92A23004F70EC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1F01C8AB2BCBA433004192DB /* ImagePicker.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -219,12 +228,15 @@
 				1FD0BFDD2BC7F3CD0032A63E /* CustomTextView.swift in Sources */,
 				1FCD1E512BCAC0EE0010EA4C /* MessageView.swift in Sources */,
 				1FD0BFDB2BC7D1EB0032A63E /* DiaryView.swift in Sources */,
+				1F01C8B02BCBA87D004192DB /* PhotoTag.swift in Sources */,
 				1FF0C2E12BC92F7E004F70EC /* WritingView.swift in Sources */,
 				1FD0BFD62BC7CB460032A63E /* MainView.swift in Sources */,
 				1F8131902BC7C835004E92CE /* DiaryTalkApp.swift in Sources */,
+				1F01C8AE2BCBA876004192DB /* Photo.swift in Sources */,
 				1FCD1E4F2BCAC0BC0010EA4C /* ChattingView.swift in Sources */,
 				1FF0C2DC2BC92A04004F70EC /* Memo.swift in Sources */,
 				1FF0C2D72BC8C951004F70EC /* temp.swift in Sources */,
+				1F01C8AC2BCBA433004192DB /* ImagePicker.swift in Sources */,
 				1FF0C2E32BC93153004F70EC /* SettingView.swift in Sources */,
 				1FD0BFDF2BC7FD190032A63E /* SelectMoodView.swift in Sources */,
 			);
