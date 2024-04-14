@@ -142,7 +142,7 @@ struct WritingView: View {
                             if memoTitle.isEmpty && memoContent.isEmpty {
                                 showAlert = true
                             } else {
-                                addMemo()
+                                // addMemo()
                                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                 doneStatus.toggle()
                                 print("Memo Save : Done Tapped")
@@ -163,7 +163,9 @@ struct WritingView: View {
                 }
             }
         } // .navigationBarBackButtonHidden(doneStatus) // doneStatus가 false일 때 뒤로 가기 버튼 나오게
-        
+        .onDisappear(){
+            addMemo() // Done을 누르면 최종 Text가 저장만되고 나갈 떄 저장됨 ( 나중에 수정하면 좋다.. )
+        }
         
     }
     
