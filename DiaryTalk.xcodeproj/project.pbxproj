@@ -92,6 +92,7 @@
 				1F81318F2BC7C835004E92CE /* DiaryTalkApp.swift */,
 				1FF0C2E22BC93153004F70EC /* SettingView.swift */,
 				1FD0BFDA2BC7D1EB0032A63E /* DiaryView.swift */,
+				1FCD1E502BCAC0EE0010EA4C /* MessageView.swift */,
 				1F8131912BC7C835004E92CE /* CalenderView.swift */,
 				1FF0C2D62BC8C951004F70EC /* temp.swift */,
 				1FD0BFDC2BC7F3CD0032A63E /* CustomTextView.swift */,
@@ -116,7 +117,6 @@
 				1FF0C2E02BC92F7E004F70EC /* WritingView.swift */,
 				1FD0BFDE2BC7FD190032A63E /* SelectMoodView.swift */,
 				1FCD1E4E2BCAC0BC0010EA4C /* ChattingView.swift */,
-				1FCD1E502BCAC0EE0010EA4C /* MessageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

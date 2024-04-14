@@ -54,9 +54,9 @@ struct SelectMoodView: View {
                             Text("close")
                                 .bold()
                             /*
-                            Image(systemName: "multiply")
-                                .resizable()
-                                .frame(width: 25, height: 25)
+                             Image(systemName: "multiply")
+                             .resizable()
+                             .frame(width: 25, height: 25)
                              */
                             
                         }).padding(.leading, 10)
@@ -77,11 +77,11 @@ struct SelectMoodView: View {
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(emojis) { emoji in
                             Text(emoji.symbol)
-                                .font(.system(size: 60))
+                                .font(.system(size: 50))
                                 .font(.largeTitle)
-                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
-                                .background(Color(hex: 0xEAEAEB))
-                                .cornerRadius(10)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 80)
+                                .padding(.vertical)
+                                .background(.gray.opacity(0.1))
                                 .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                                 .foregroundColor(.white)
                                 .onTapGesture {
@@ -100,7 +100,7 @@ struct SelectMoodView: View {
     }
     
     func dismissModal() {
-           presentationMode.wrappedValue.dismiss()
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

@@ -5,6 +5,7 @@ import SwiftData
 @main
 struct DiaryTalkApp: App {
     
+    
     var modelContainer: ModelContainer = {
         let schema = Schema([Memo.self, Tag.self, Chat.self, ChatTag.self])
           let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
@@ -20,6 +21,7 @@ struct DiaryTalkApp: App {
         WindowGroup {
             MainView()
                 .modelContainer(modelContainer)
+            
         }
     }
 }

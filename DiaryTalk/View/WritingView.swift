@@ -17,6 +17,7 @@ struct WritingView: View {
     static let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 M월 d일 E요일"
+        
         return formatter
     }()
     
@@ -47,7 +48,7 @@ struct WritingView: View {
                         }, label: {
                             if selectedEmoji.isEmpty { // 선택된 Emoji가 없으면 plus 아이콘 표시
                                 Image(systemName: "plus")
-                                    .foregroundColor(.green)
+                                    .foregroundColor(Color(hex: 0xE2B100))
                             } else { // 선택된 Emoji가 있으면 해당 Emoji 표시
                                 Text(selectedEmoji)
                                     .font(.system(size: 30))
@@ -80,11 +81,14 @@ struct WritingView: View {
                         
                     }
                     VStack{
+                        
                         TextField("Title", text: $memoTitle)
                             .padding()
+                            .padding(.leading, 5)
                             .bold()
                             .foregroundColor(.green)
                             .cornerRadius(10)
+                          
                         
                         TextEditor(text: $memoContent)
                             .scrollContentBackground(.hidden)
@@ -114,7 +118,6 @@ struct WritingView: View {
                     }
                 }.onTapGesture {
                     doneStatus = true
-                    
                 }
                 .padding()
                 .toolbar {
@@ -126,14 +129,13 @@ struct WritingView: View {
                         } else {
                             print("\(doneStatus)")
                         }
-                        
                         doneStatus.toggle()
                         print("Memo Save : Done Tapped")
                         
                     }, label: {
                         Text(doneStatus ? "Done" : "Edit")
                             .bold()
-                            .foregroundColor(.green)
+                            .foregroundColor(Color(hex: 0xE2B100))
                     })
                     
                 }

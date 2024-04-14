@@ -10,12 +10,14 @@ class Chat: Identifiable {
     
     var chatMessage: String
     var chatTime: Date = Date()
+    var chatDay: Date = Date()
     
     @Relationship(inverse: \ChatTag.chat) var chattag: [ChatTag]?
     
-    init(chatMessage: String, chatTime: Date){
+    init(chatMessage: String, chatTime: Date, chatDay: Date){
         self.chatMessage = chatMessage
         self.chatTime = chatTime
+        self.chatDay = chatDay
     }
     
 }
