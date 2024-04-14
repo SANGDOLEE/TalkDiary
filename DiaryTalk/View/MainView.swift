@@ -127,11 +127,11 @@ struct MemoCellView: View {
                 
                 Text(memo.emoji)
                     .padding(.trailing)
-                    .font(.system(size: 30))
+                    .font(.system(size: 20))
             }
             HStack{
                 Text(memo.content)
-                    .font(.system(size: 16))
+                    .font(.system(size: 14))
                     .foregroundColor(.black)
                     .padding(.leading)
                     .lineLimit(1)
@@ -139,8 +139,8 @@ struct MemoCellView: View {
                 
                 Text("\(memo.time, formatter: WritingView.monthDayFormat)")
                     .padding(.trailing)
-                    .foregroundColor(.gray)
-                    .font(.system(size: 16))
+                    .foregroundColor(.gray.opacity(0.7))
+                    .font(.system(size: 14))
             }
         }
         .frame(maxWidth: .infinity, minHeight: 50) // 고정된 크기 적용
