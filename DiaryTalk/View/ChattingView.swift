@@ -109,7 +109,8 @@ struct ChattingView: View {
                                 .shadow(color: .gray, radius: 1, x: 1, y: 1)
                         )
                 }
-                .padding()
+                .padding(.horizontal)
+                .padding(.bottom)
             }.navigationTitle("Talk me🗣️")
                 .onTapGesture {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

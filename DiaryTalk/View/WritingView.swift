@@ -107,9 +107,21 @@ struct WritingView: View {
                                 }
                                 .foregroundColor(.black)
                                 .padding()
+                                Spacer()
+                                Button("*") {
+                                    memoContent = memoContent + "*"
+                                }
+                                .padding()
+                                .foregroundColor(.black)
                                 
                                 Spacer()
+                                Button(".") {
+                                    memoContent = memoContent + "."
+                                }
+                                .padding()
+                                .foregroundColor(.black)
                                 
+                                Spacer()
                                 Button("Bold") {
                                     
                                 }
