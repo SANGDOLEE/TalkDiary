@@ -54,9 +54,8 @@ struct WritingView: View {
                             self.showModal = true
                         }, label: {
                             if selectedEmoji.isEmpty { // 선택된 Emoji가 없으면 plus 아이콘 표시
-                                Image(systemName: "hand.tap")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
+                                Text("🫥")
+                                    .font(.system(size: 30))
                                     .foregroundColor(.black)
                                 //.foregroundColor(Color(hex: 0xE2B100))
                             } else { // 선택된 Emoji가 있으면 해당 Emoji 표시
@@ -96,7 +95,7 @@ struct WritingView: View {
                             .padding()
                             .padding(.leading, 5)
                             .bold()
-                            .foregroundColor(Color(hex: 0xE2B100))
+                            .foregroundColor(.black)
                             .cornerRadius(10)
                         
                         TextEditor(text: $memoContent)
@@ -161,7 +160,7 @@ struct WritingView: View {
                     }, label: {
                         Text(doneStatus ? "Done" : "Edit")
                             .bold()
-                            .foregroundColor(Color(hex: 0xE2B100))
+                            //.foregroundColor(Color(hex: 0xE2B100))
                     }).alert(isPresented: $showAlert) {
                         Alert(title: Text("텍스트가 비어있습니다."), message: Text("제목 혹은 내용을 작성해주세요."), dismissButton: .default(Text("OK")))
                     }

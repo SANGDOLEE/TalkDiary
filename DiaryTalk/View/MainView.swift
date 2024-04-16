@@ -138,7 +138,7 @@ struct MemoCellView: View {
                     .font(.system(size: 20))
                 
                     .bold()
-                    .foregroundColor(Color(hex: 0xE2B100))
+                    .foregroundColor(.black)
                     .lineLimit(1)
                 Spacer()
                 
