@@ -11,7 +11,6 @@ struct Message: Hashable {
     var day: Date
 }
 
-
 struct ChattingView: View {
     
     @Query var chats: [Chat]
@@ -20,13 +19,11 @@ struct ChattingView: View {
     @State private var chatting: [Message] = []
     @State private var newMessage: String = ""
     
-    
     @State var showImagePicker = false
     @State var selectedUIImage: UIImage?
     @State var image: Image?
     
     /// 채팅날짜 & 시간
-    
     static let timeFormat: DateFormatter = {
         var formatter_time = DateFormatter()
         formatter_time.dateFormat = "aa HH:mm"
@@ -34,17 +31,17 @@ struct ChattingView: View {
     }()
     var time = Date()
     
+//    @State private var previousDate: Date?
+    
     var body: some View {
         
         VStack {
             ScrollViewReader { proxy in
                 ScrollView {
-                    
                     LazyVStack {
-                        
                         ForEach(chats, id:\.self) { chat in
-                            // chatDayText(chat: chat) // 나중에 수정바람
-                                
+                            // chatDayText(chat: chat) // 나중에 수정바람 ✅✅✅✅
+                            
                             MessageCell(chat: chat)
                                 .id(chat)
                             
@@ -68,7 +65,7 @@ struct ChattingView: View {
                         showImagePicker.toggle()
                     }, label: {
                         Image(systemName: "photo")
-                            .foregroundColor(.orange)
+                            .foregroundColor(.blue)
                             .frame(width: 15, height: 15)
                     }).sheet(isPresented: $showImagePicker, onDismiss: {
                         loadImage()
@@ -98,7 +95,7 @@ struct ChattingView: View {
                         Image(systemName: "paperplane")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .foregroundColor(newMessage.isEmpty ? .gray : .orange)
+                            .foregroundColor(newMessage.isEmpty ? .gray : .blue)
                         
                             .frame(width: 20, height: 20)
                     }.disabled(newMessage.isEmpty) // 텍스트 비어있으면 비활성화
@@ -127,12 +124,15 @@ struct ChattingView: View {
             
             chatting.append(Message(content: newMessage, isCurrentUser: true, sendTime: time, day: time))
             newMessage = ""
+            
+            
         }
     }
     
     func loadImage() {
         guard let selectedImage = selectedUIImage else { return }
         image = Image(uiImage: selectedImage)
+       
     }
 }
 
@@ -161,8 +161,9 @@ struct MessageCell: View {
                 Text(chat.chatMessage)
                     .padding(12)
                     .font(.system(size: 11))
-                    .foregroundColor(Color.black)
-                    .background(Color(hex: 0xE2B100))
+                    .foregroundColor(Color.white)
+                    .background(.blue)
+                    //.background(Color(hex: 0xE2B100))
                     .cornerRadius(10)
                     .shadow(color: Color.gray.opacity(0.5), radius: 10, x: 0, y: 5)
             }.padding(5)
@@ -170,8 +171,9 @@ struct MessageCell: View {
         }
     }
     
-    /*
+    
     // 날짜가 바꼈을때만 한번만 나오게 !
+    /*
     private func shouldDisplayDay() -> Bool {
         guard let previousDay = UserDefaults.standard.value(forKey: "previousDay") as? Date else {
             UserDefaults.standard.set(chat.chatDay, forKey: "previousDay")
@@ -186,8 +188,8 @@ struct MessageCell: View {
         return false
     }
      */
+     
 }
-
 
 struct chatDayText: View {
     

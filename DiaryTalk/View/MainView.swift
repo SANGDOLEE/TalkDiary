@@ -8,6 +8,8 @@ struct MainView: View {
     @Environment(\.modelContext) var modelContext
     @Query var memos: [Memo]
     
+    @State private var multiSelection = Set<UUID>()
+    
     // var memo: Memo
     // Search Bar
     @State private var searchText = "" // search Text
@@ -28,21 +30,24 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            List {
+            List(selection: $multiSelection) {
                 ForEach(filteredMemos.reversed(), id: \.id) { memo in
                     NavigationLink(destination: MemoDetailView(memo: memo)) { // cell을 눌렀을 때 DetailView로 이동
                         
                         MemoCellView(memo: memo, onDelete: { // ㅣist에 memo가 cell로 저장됨
                             deleteMemo(memo)
+                            
                         })
-                    }.toolbarRole(.editor) // NavigationBackButton Label Hidden인데 적용안됨
+                        
+                    }.toolbarRole(.editor) // NavigationBackButton LabelHidden인데 적용안됨
                 }
                 .onDelete { indexSet in
                     for index in indexSet {
                         deleteMemo(filteredMemos[index])
                     }
                 }
-            }
+            }.listRowSeparatorTint(.blue)
+//                .toolbar { EditButton() } ✅✅✅
             //.padding(.horizontal)
             //.padding(.bottom)
             
@@ -91,7 +96,7 @@ struct MainView: View {
                                 }
                                 
                                 Button(action: {
-                                    
+                                   
                                 }, label: {
                                     Text("Select")
                                     Image(systemName: "checkmark")

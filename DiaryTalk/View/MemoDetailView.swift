@@ -46,12 +46,12 @@ struct MemoDetailView: View {
                         HStack{
                             if isEditing {
                                 TextField("Title", text: $memo.title)
-                                    .foregroundColor(Color(hex: 0xE2B100))
+                                    // .foregroundColor(Color(hex: 0xE2B100))
                                     .bold()
                                     .padding(.leading,5)
                             } else {
                                 Text(memo.title)
-                                    .foregroundColor(Color(hex: 0xE2B100))
+                                    // .foregroundColor(Color(hex: 0xE2B100))
                                     .bold()
                                     .padding(.leading,5)
                             }
