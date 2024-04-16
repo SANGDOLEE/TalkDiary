@@ -43,7 +43,7 @@ struct ChattingView: View {
                     LazyVStack {
                         
                         ForEach(chats, id:\.self) { chat in
-                            chatDayText(chat: chat)
+                            // chatDayText(chat: chat) // 나중에 수정바람
                                 
                             MessageCell(chat: chat)
                                 .id(chat)
@@ -130,12 +130,10 @@ struct ChattingView: View {
         }
     }
     
-    
     func loadImage() {
         guard let selectedImage = selectedUIImage else { return }
         image = Image(uiImage: selectedImage)
     }
-    
 }
 
 
@@ -145,8 +143,6 @@ struct MessageCell: View {
     
     var body: some View {
         VStack{
-            
-            
            /*
                 Text("\(chat.chatDay, formatter: WritingView.dateFormat)")
                     .environment(\.locale, Locale(identifier: "ko_KR"))
@@ -154,8 +150,6 @@ struct MessageCell: View {
                     .font(.system(size: 14))
                     .foregroundColor(.gray.opacity(0.7))
             */
-            
-            
             HStack{
                 Spacer()
                 Text("\(chat.chatTime, formatter: ChattingView.timeFormat)")
@@ -207,7 +201,6 @@ struct chatDayText: View {
             .foregroundColor(.gray.opacity(0.7))
     }
 }
-
 
 #Preview {
     ChattingView()

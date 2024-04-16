@@ -12,5 +12,4 @@ final class Tag {
     init(tag: String) {
         self.tag = tag
     }
-    
 }

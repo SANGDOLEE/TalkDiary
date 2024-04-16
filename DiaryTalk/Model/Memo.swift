@@ -12,8 +12,6 @@ class Memo: Identifiable {
     var emoji: String = "" // 기분
     var time: Date = Date() // 날짜
     
-    
-    
     @Relationship(inverse: \Tag.memo) var tag: [Tag]?
     
     init(title: String, content: String, emoji: String, time: Date){
@@ -21,7 +19,5 @@ class Memo: Identifiable {
         self.content = content
         self.emoji = emoji
         self.time = time
-    
     }
-    
 }

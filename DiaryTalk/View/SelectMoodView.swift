@@ -84,7 +84,7 @@ struct SelectMoodView: View {
                                 .font(.largeTitle)
                                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 80)
                                 .padding(.vertical)
-                                .background(.gray.opacity(0.1))
+                                .background(.white)
                                 .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                                 .foregroundColor(.white)
                                 .onTapGesture {
@@ -92,7 +92,6 @@ struct SelectMoodView: View {
                                     print("Selected Mood : \(selectedEmoji)")
                                     dismissModal()
                                 }
-                            
                         }
                     }
                     .padding()

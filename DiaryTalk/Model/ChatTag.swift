@@ -12,6 +12,4 @@ final class ChatTag {
     init(chatTag: String) {
         self.chatTag = chatTag
     }
-    
 }
-

@@ -9,7 +9,6 @@ struct WritingView: View {
     @State private var selectedEmoji = "" // 선택한 emoji 저장
     
     @Environment(\.modelContext) var modelContext
-  
     
     // Edit <-> Done
     @State private var doneStatus = true
@@ -18,14 +17,12 @@ struct WritingView: View {
     static let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 M월 d일 E요일"
-        
         return formatter
     }()
     
     static let timeFormat: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 M월 d일 E요일 HH:mm"
-        
         return formatter
     }()
     
@@ -61,7 +58,7 @@ struct WritingView: View {
                                     .resizable()
                                     .frame(width: 30, height: 30)
                                     .foregroundColor(.black)
-                                    //.foregroundColor(Color(hex: 0xE2B100))
+                                //.foregroundColor(Color(hex: 0xE2B100))
                             } else { // 선택된 Emoji가 있으면 해당 Emoji 표시
                                 Text(selectedEmoji)
                                     .font(.system(size: 30))
@@ -101,7 +98,6 @@ struct WritingView: View {
                             .bold()
                             .foregroundColor(Color(hex: 0xE2B100))
                             .cornerRadius(10)
-                        
                         
                         TextEditor(text: $memoContent)
                             .scrollContentBackground(.hidden)
@@ -173,27 +169,21 @@ struct WritingView: View {
                 }
             }
         }.navigationBarBackButtonHidden(doneStatus) // doneStatus가 false일 때 뒤로 가기 버튼 나오게
-        .onDisappear(){
-            if !memoTitle.isEmpty || !memoContent.isEmpty { // title or content가 하나라도 있어야 저장
-                addMemo() // Done을 누르면 최종 Text가 저장만되고 나갈 떄 저장됨 ( 나중에 수정하면 좋다.. )
+            .onDisappear(){
+                if !memoTitle.isEmpty || !memoContent.isEmpty { // title or content가 하나라도 있어야 저장
+                    addMemo() // Done을 누르면 최종 Text가 저장만되고 나갈 떄 저장됨 ( 나중에 수정하면 좋다.. )
+                }
             }
-        }
     }
     
     func addMemo() {
-        let memo = Memo(title: memoTitle, content: memoContent, emoji: selectedEmoji, time: today)
+        var memo = Memo(title: memoTitle, content: memoContent, emoji: selectedEmoji, time: today)
         modelContext.insert(memo)
     }
     
-    func updateMemo() {
-        
-    }
-    /*
-     func deleteMemo(_ memo: Memo) {
-     modelContext.delete(memo)
-     }
-     */
-    
+//    func deleteMemo(_ memo: Memo) {
+//        modelContext.delete(memo)
+//    }
 }
 
 #Preview {

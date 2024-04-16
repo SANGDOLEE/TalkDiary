@@ -19,6 +19,4 @@ class Chat: Identifiable {
         self.chatTime = chatTime
         self.chatDay = chatDay
     }
-    
 }
-
