@@ -94,7 +94,11 @@ struct MemoDetailView: View {
                                         Button(action: {
                                             isEditing.toggle()
                                         }) {
-                                            Text(isEditing ? "Done" : "Edit")
+                                            if isEditing {
+                                                    Image(systemName: "checkmark.circle.fill")
+                                                } else {
+                                                    Image(systemName: "square.and.pencil")
+                                                }
                                         }
                                     }
                                 }

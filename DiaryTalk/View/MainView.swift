@@ -30,104 +30,106 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            List(selection: $multiSelection) {
-                ForEach(filteredMemos.reversed(), id: \.id) { memo in
-                    NavigationLink(destination: MemoDetailView(memo: memo)) { // cell을 눌렀을 때 DetailView로 이동
-                        
-                        MemoCellView(memo: memo, onDelete: { // ㅣist에 memo가 cell로 저장됨
-                            deleteMemo(memo)
-                            
-                        })
-                        
-                    }.toolbarRole(.editor) // NavigationBackButton LabelHidden인데 적용안됨
-                }
-                .onDelete { indexSet in
-                    for index in indexSet {
-                        deleteMemo(filteredMemos[index])
-                    }
-                }
-            }.listRowSeparatorTint(.blue)
-//                .toolbar { EditButton() } ✅✅✅
-            //.padding(.horizontal)
-            //.padding(.bottom)
             
-            /*
-             ScrollView {
-             LazyVGrid(columns: columns, spacing: 10) {
-             ForEach(filteredMemos.reversed()) { memo in
-             MemoCellView(memo: memo, onDelete: {
-             deleteMemo(memo)
-             })
-             .swipeToDelete {
-             deleteMemo(memo)
-             }
-             }
-             }
-             .padding(.horizontal)
-             .padding(.bottom)
-             }
-             */
-            
-            .background(Color(hex: 0xEAEAEB))
-            //.navigationBarTitle("Talk Diary")
-            .navigationBarTitle("Talk Diary", displayMode: .inline)
-            .navigationBarItems(trailing:
-                                    HStack {
-                NavigationLink(destination: ChattingView()
-                    .toolbarRole(.editor)
-                ) {
-                    Image(systemName: "ellipsis.message")
-                    // .foregroundColor(.green)
-                }
-                
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        HStack {
-                            Spacer()
-                            Menu(content: {
-                                HStack{
-                                    NavigationLink(destination: WritingView()
-                                        .toolbarRole(.editor) // NavigationBackbutton label 끄기
-                                    ) {
-                                        Text("Add new")
-                                            .foregroundColor(.black)
-                                        Image(systemName: "plus")
-                                    }
-                                }
-                                
-                                Button(action: {
-                                   
-                                }, label: {
-                                    Text("Select")
-                                    Image(systemName: "checkmark")
-                                    
+            VStack{
+                ScrollView{
+                    LazyVStack {
+                        ForEach(filteredMemos.reversed(), id: \.id) { memo in
+                            NavigationLink(destination: MemoDetailView(memo: memo)) { // cell을 눌렀을 때 DetailView로 이동
+                                MemoCellView(memo: memo, onDelete: {
+                                    deleteMemo(memo)
                                 })
-                                
-                                NavigationLink(destination: SettingView()) {
-                                    
-                                    Text("Setting")
-                                        .foregroundColor(.black)
-                                    Image(systemName: "gear")
-                                    
+                                .swipeToDelete(at: filteredMemos.firstIndex(of: memo) ?? 0) {
+                                    deleteMemo(memo)
                                 }
-                                
-                            }, label: {
-                                Label("more", systemImage: "ellipsis")
-                                    .foregroundColor(.yellow)
-                            })
-                            
-                            Spacer()
+                            }
                         }
+                        // onDelete는 LazyVStack에서 사용할 수 없습니다.
+                        // 따라서 swipeToDelete modifier를 사용하여 삭제 동작을 구현해야 합니다.
                     }
-                }
-            })
+                }.padding(.horizontal)
+                
+                
+                //                .toolbar { ToolbarItem(placement: .navigationBarLeading) {
+                //                    EditButton()
+                //                } }
+                    .background(Color(hex: 0xEAEAEB))
+                    .navigationBarTitle("Talkary")
+                //.navigationBarTitle("Talk Diary", displayMode: .inline)
+                    .navigationBarItems(trailing:
+                                            HStack {
+                        NavigationLink(destination: ChattingView()
+                            .toolbarRole(.editor)
+                        ) {
+                            Image(systemName: "message.fill")
+                        }
+                        //.toolbarRole(.editor)
+                        .toolbar {
+                            ToolbarItem(placement: .primaryAction) {
+                                HStack {
+                                    Spacer()
+                                    Menu(content: {
+                                        /*
+                                         HStack{
+                                         NavigationLink(destination: WritingView()
+                                         .toolbarRole(.editor) // NavigationBackbutton label 끄기
+                                         ) {
+                                         Text("Add new")
+                                         .foregroundColor(.black)
+                                         Image(systemName: "plus")
+                                         }
+                                         }
+                                         
+                                         Button(action: {
+                                         
+                                         }, label: {
+                                         Text("Select")
+                                         Image(systemName: "checkmark")
+                                         
+                                         })
+                                         */
+                                        NavigationLink(destination: SettingView()) {
+                                            
+                                            Text("Setting")
+                                                .foregroundColor(.black)
+                                            Image(systemName: "gear")
+                                            
+                                        }
+                                        
+                                    }, label: {
+                                        Label("more", systemImage: "ellipsis")
+                                            .foregroundColor(.yellow)
+                                    })
+                                    
+                                    Spacer()
+                                }
+                            }
+                        }
+                    })
+                HStack {
+                    NavigationLink(destination: WritingView()) {
+                        Text("+ New Diary")
+                            .font(.system(size: 16))
+                            .foregroundColor(.white)
+                            .bold()
+                            .padding(.vertical, 15)
+                            .padding(.horizontal, 120)
+                            .background(Color.blue)
+                            .cornerRadius(20)
+                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 5)
+                    }
+                }.padding(.bottom, 10)
+                
+            } // VSTACK
+            .background(Color(hex: 0xEAEAEC))
         }
-        .searchable(text: $searchText, prompt: "Search") // Search Bar
+        .searchable(text: $searchText, prompt: "") // Search Bar
     }
     
     func deleteMemo(_ memo: Memo) {
         modelContext.delete(memo)
     }
+    
 }
 
 // MemoCell View
@@ -137,39 +139,47 @@ struct MemoCellView: View {
     var onDelete: () -> Void
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        HStack() {
             HStack{
-                Text(memo.title.prefix(12)) // 12자까지만 표기
-                    .font(.system(size: 20))
-                
-                    .bold()
-                    .foregroundColor(.black)
-                    .lineLimit(1)
-                Spacer()
-                
-                Text(memo.emoji)
-                
-                    .font(.system(size: 20))
+                Circle()
+                    .foregroundColor(.blue.opacity(0.5))
+                    .frame(width: 42, height: 42)
+                    .overlay(
+                        Text(memo.emoji)
+                            .font(.system(size: 39))
+                            .foregroundColor(.white)
+                    )
             }
-            HStack{
-                Text(memo.content)
-                    .font(.system(size: 14))
-                    .foregroundColor(.black)
-                
-                    .lineLimit(1)
-                Spacer()
-                
-                Text("\(memo.time, formatter: WritingView.monthDayFormat)")
-                
-                    .foregroundColor(.gray.opacity(0.7))
-                    .font(.system(size: 14))
+            VStack{
+                HStack{
+                    Text(memo.title) // 12자까지만 표기
+                        .font(.system(size: 16))
+                        .bold()
+                        .foregroundColor(.black)
+                        .lineLimit(1)
+                        
+                    Spacer()
+                }
+                HStack{
+                    Text(memo.content)
+                        .font(.system(size: 14))
+                        .foregroundColor(.gray.opacity(0.7))
+                        .lineLimit(1)
+                    Spacer()
+                }
             }
+            Spacer()
+            Text("\(memo.time, formatter: WritingView.monthDayFormat)")
+                .foregroundColor(.gray.opacity(0.7))
+                .font(.system(size: 14))
+            
         }
+        .padding()
         .frame(maxWidth: .infinity, minHeight: 35) // 고정된 크기 적용
-        .padding(10)
+        // .padding(10)
         .background(Color.white)
         .cornerRadius(10)
-        .padding(5)
+        // .padding(5)
         .contextMenu {
             Button(action: {
                 onDelete()
@@ -179,18 +189,33 @@ struct MemoCellView: View {
             }
         }
     }
+    
 }
 
 // 스와이프 삭제
+/*
+ extension View {
+ func swipeToDelete(action: @escaping () -> Void) -> some View {
+ return self.gesture(
+ DragGesture()
+ .onEnded { gesture in
+ if gesture.translation.width < -100 {
+ action()
+ }
+ })
+ }
+ }
+ */
 extension View {
-    func swipeToDelete(action: @escaping () -> Void) -> some View {
+    func swipeToDelete(at index: Int, action: @escaping () -> Void) -> some View {
         return self.gesture(
             DragGesture()
                 .onEnded { gesture in
                     if gesture.translation.width < -100 {
                         action()
                     }
-                })
+                }
+        )
     }
 }
 
@@ -207,8 +232,49 @@ extension Color {
     }
 }
 
+
+#Preview {
+    MainView()
+}
+
+
+
+//.padding(.horizontal)
+//.padding(.bottom)
+
+
+//ScrollView {
+//    LazyVGrid(columns: columns, spacing: 10) {
+//        ForEach(filteredMemos.reversed()) { memo in
+//            MemoCellView(memo: memo, onDelete: {
+//                deleteMemo(memo)
+//            })
+//            .swipeToDelete {
+//                deleteMemo(memo)
+//            }
+//        }
+//    }
+//    .padding(.horizontal)
+//    .padding(.bottom)
+//}
+
+
 /*
- #Preview {
- MainView()
+ List() {
+ // ✅ reversed() 때문에 스와이프삭제가 인덱스 문제..
+ ForEach(filteredMemos.reversed(), id: \.id) { memo in
+ NavigationLink(destination: MemoDetailView(memo: memo)) { // cell을 눌렀을 때 DetailView로 이동
+ MemoCellView(memo: memo, onDelete: {
+ deleteMemo(memo)
+ })
+ .swipeToDelete(at: filteredMemos.firstIndex(of: memo) ?? 0) {
+ deleteMemo(memo)
  }
- */
+ }
+ }
+ //                    .onDelete { indexSet in
+ //                        for index in indexSet {
+ //                            deleteMemo(filteredMemos[index])
+ //                        }
+ //                    }
+ }*/

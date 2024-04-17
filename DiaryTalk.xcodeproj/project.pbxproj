@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F00AB452BD000B400B3D63D /* PhotoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00AB442BD000B400B3D63D /* PhotoTest.swift */; };
 		1F01C8AC2BCBA433004192DB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F01C8AB2BCBA433004192DB /* ImagePicker.swift */; };
 		1F01C8AE2BCBA876004192DB /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F01C8AD2BCBA876004192DB /* Photo.swift */; };
 		1F01C8B02BCBA87D004192DB /* PhotoTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F01C8AF2BCBA87D004192DB /* PhotoTag.swift */; };
@@ -26,12 +27,14 @@
 		1FD0BFD92BC7CFDF0032A63E /* Vector.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FD0BFD82BC7CFDF0032A63E /* Vector.png */; };
 		1FD0BFDB2BC7D1EB0032A63E /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD0BFDA2BC7D1EB0032A63E /* DiaryView.swift */; };
 		1FD0BFDF2BC7FD190032A63E /* SelectMoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD0BFDE2BC7FD190032A63E /* SelectMoodView.swift */; };
+		1FF06EEF2BCEBD1700B204B3 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF06EEE2BCEBD1700B204B3 /* TabBarView.swift */; };
 		1FF0C2DC2BC92A04004F70EC /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0C2DB2BC92A04004F70EC /* Memo.swift */; };
 		1FF0C2E12BC92F7E004F70EC /* WritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0C2E02BC92F7E004F70EC /* WritingView.swift */; };
 		1FF0C2E32BC93153004F70EC /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0C2E22BC93153004F70EC /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F00AB442BD000B400B3D63D /* PhotoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTest.swift; sourceTree = "<group>"; };
 		1F01C8AB2BCBA433004192DB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		1F01C8AD2BCBA876004192DB /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		1F01C8AF2BCBA87D004192DB /* PhotoTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTag.swift; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		1FD0BFD82BC7CFDF0032A63E /* Vector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vector.png; sourceTree = "<group>"; };
 		1FD0BFDA2BC7D1EB0032A63E /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
 		1FD0BFDE2BC7FD190032A63E /* SelectMoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMoodView.swift; sourceTree = "<group>"; };
+		1FF06EEE2BCEBD1700B204B3 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		1FF0C2DB2BC92A04004F70EC /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		1FF0C2E02BC92F7E004F70EC /* WritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingView.swift; sourceTree = "<group>"; };
 		1FF0C2E22BC93153004F70EC /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				1F81319D2BC7C93C004E92CE /* View */,
 				1FF0C2E22BC93153004F70EC /* SettingView.swift */,
 				1F81318F2BC7C835004E92CE /* DiaryTalkApp.swift */,
+				1FF06EEE2BCEBD1700B204B3 /* TabBarView.swift */,
 				1F01C8B82BCD121F004192DB /* EditMemoView.swift */,
 				1FD0BFDA2BC7D1EB0032A63E /* DiaryView.swift */,
 				1F8131912BC7C835004E92CE /* CalenderView.swift */,
@@ -119,6 +124,7 @@
 				1F01C8B62BCCB7BC004192DB /* MemoDetailView.swift */,
 				1FD0BFDE2BC7FD190032A63E /* SelectMoodView.swift */,
 				1FCD1E4E2BCAC0BC0010EA4C /* ChattingView.swift */,
+				1F00AB442BD000B400B3D63D /* PhotoTest.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -235,7 +241,9 @@
 				1F01C8B72BCCB7BC004192DB /* MemoDetailView.swift in Sources */,
 				1F8131922BC7C835004E92CE /* CalenderView.swift in Sources */,
 				1FD0BFDB2BC7D1EB0032A63E /* DiaryView.swift in Sources */,
+				1FF06EEF2BCEBD1700B204B3 /* TabBarView.swift in Sources */,
 				1F01C8B22BCC1EA0004192DB /* TodayLogView.swift in Sources */,
+				1F00AB452BD000B400B3D63D /* PhotoTest.swift in Sources */,
 				1F01C8B92BCD121F004192DB /* EditMemoView.swift in Sources */,
 				1F01C8B02BCBA87D004192DB /* PhotoTag.swift in Sources */,
 				1FF0C2E12BC92F7E004F70EC /* WritingView.swift in Sources */,

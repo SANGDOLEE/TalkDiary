@@ -45,7 +45,7 @@ struct WritingView: View {
         NavigationStack{
             
             ZStack{
-                Color.gray.opacity(0.2)
+                Color.white
                     .ignoresSafeArea()
                 
                 VStack {
@@ -86,11 +86,8 @@ struct WritingView: View {
                         Text("\(today, formatter: WritingView.dateFormat)")
                             .environment(\.locale, Locale(identifier: "ko_KR"))
                             .foregroundColor(.gray.opacity(0.7))
-                        
-                        
                     }
                     VStack{
-                        
                         TextField("Title", text: $memoTitle)
                             .padding()
                             .padding(.leading, 5)
@@ -101,7 +98,7 @@ struct WritingView: View {
                         TextEditor(text: $memoContent)
                             .scrollContentBackground(.hidden)
                             .background(.clear)
-                            .padding(.leading)
+                            .padding(.leading, 15)
                             .cornerRadius(10)
                             .lineSpacing(10)
                     }.toolbar {
@@ -139,7 +136,7 @@ struct WritingView: View {
                 }.onTapGesture {
                     doneStatus = true
                 }
-                .padding()
+                //.padding()
                 .toolbar {
                     
                     Button(action: {
@@ -156,27 +153,27 @@ struct WritingView: View {
                             print("\(doneStatus)")
                         }
                         
-                        
                     }, label: {
                         Text(doneStatus ? "Done" : "Edit")
                             .bold()
                             //.foregroundColor(Color(hex: 0xE2B100))
                     }).alert(isPresented: $showAlert) {
-                        Alert(title: Text("텍스트가 비어있습니다."), message: Text("제목 혹은 내용을 작성해주세요."), dismissButton: .default(Text("OK")))
+                        Alert(title: Text("알림"), message: Text("제목 혹은 내용을 작성해주세요."), dismissButton: .default(Text("OK")))
                     }
-                    
                 }
             }
-        }.navigationBarBackButtonHidden(doneStatus) // doneStatus가 false일 때 뒤로 가기 버튼 나오게
+        }
+        //.navigationBarBackButtonHidden(doneStatus) // doneStatus가 false일 때 뒤로 가기 버튼 나오게
             .onDisappear(){
                 if !memoTitle.isEmpty || !memoContent.isEmpty { // title or content가 하나라도 있어야 저장
                     addMemo() // Done을 누르면 최종 Text가 저장만되고 나갈 떄 저장됨 ( 나중에 수정하면 좋다.. )
                 }
             }
+        
     }
     
     func addMemo() {
-        var memo = Memo(title: memoTitle, content: memoContent, emoji: selectedEmoji, time: today)
+        let memo = Memo(title: memoTitle, content: memoContent, emoji: selectedEmoji, time: today)
         modelContext.insert(memo)
     }
     

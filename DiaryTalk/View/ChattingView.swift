@@ -2,6 +2,7 @@ import SwiftUI
 import Foundation
 import Combine
 import SwiftData
+import PhotosUI
 
 struct Message: Hashable {
     var id = UUID()
@@ -19,9 +20,9 @@ struct ChattingView: View {
     @State private var chatting: [Message] = []
     @State private var newMessage: String = ""
     
-    @State var showImagePicker = false
-    @State var selectedUIImage: UIImage?
-    @State var image: Image?
+    // 앨범(이미지)
+    @State private var images: [UIImage] = []
+    @State private var photosPickerItems: [PhotosPickerItem] = []
     
     /// 채팅날짜 & 시간
     static let timeFormat: DateFormatter = {
@@ -31,21 +32,41 @@ struct ChattingView: View {
     }()
     var time = Date()
     
-//    @State private var previousDate: Date?
+    // 각 날짜별로 최근의 chatTime을 저장할 딕셔너리
+    //@State private var latestChatTimeByDay: [Date: Date] = [:]
+    //@State private var previousDate: Date?
     
     var body: some View {
         
         VStack {
             ScrollViewReader { proxy in
-                ScrollView {
+                ScrollView() {
                     LazyVStack {
+                        VStack{
+                            Text("\(time, formatter: WritingView.dateFormat)")
+                                .environment(\.locale, Locale(identifier: "ko_KR"))
+                                .padding(.top, 20)
+                                .font(.system(size: 14))
+                                .foregroundColor(.gray.opacity(0.7))
+                        }
                         ForEach(chats, id:\.self) { chat in
-                            // chatDayText(chat: chat) // 나중에 수정바람 ✅✅✅✅
                             
                             MessageCell(chat: chat)
                                 .id(chat)
-                            
                         }
+                        HStack{
+                            Spacer()
+                            VStack{
+                                Spacer()
+                                ForEach(0..<images.count, id:\.self) { i in
+                                    Image(uiImage: images[i])
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                        .clipShape(.circle)
+                                }
+                            }
+                        }
+                        
                     }
                     .onReceive(Just(chats)) { _ in
                         withAnimation {
@@ -61,17 +82,8 @@ struct ChattingView: View {
                 
                 /// 사진 - 채팅 입력 - 전송
                 HStack {
-                    Button(action: {
-                        showImagePicker.toggle()
-                    }, label: {
-                        Image(systemName: "photo")
-                            .foregroundColor(.blue)
-                            .frame(width: 15, height: 15)
-                    }).sheet(isPresented: $showImagePicker, onDismiss: {
-                        loadImage()
-                    }) {
-                        ImagePicker(image: $selectedUIImage)
-                    } .padding(15)
+                    PhotosPicker("S", selection: $photosPickerItems, maxSelectionCount: 5, selectionBehavior: .ordered)
+                        .foregroundColor(.clear).padding(15)
                         .background(
                             Circle()
                                 .foregroundColor(.white)
@@ -82,12 +94,24 @@ struct ChattingView: View {
                                 .stroke(lineWidth: 1)
                                 .foregroundColor(.white)
                         )
-                    
+                        .onChange(of: photosPickerItems) { _ , _ in
+                            Task {
+                                for item in photosPickerItems {
+                                    if let data = try? await item.loadTransferable(type: Data.self) {
+                                        if let image = UIImage(data: data) {
+                                            images.append(image)
+                                        }
+                                    }
+                                }
+                                photosPickerItems.removeAll()
+                            }
+                        }
                     TextField("", text: $newMessage)
                         .textFieldStyle(.roundedBorder)
                     
                     
                     Button{action: do {
+                        
                         saveMessage()
                         print("Chatting 배열 : \(chatting)")
                     }
@@ -108,10 +132,14 @@ struct ChattingView: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
-            }.navigationTitle("Talk me🗣️")
-                .onTapGesture {
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            } .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Image(systemName: "bonjour")
                 }
+            }
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
         }
     }
     
@@ -124,18 +152,25 @@ struct ChattingView: View {
             
             chatting.append(Message(content: newMessage, isCurrentUser: true, sendTime: time, day: time))
             newMessage = ""
-            
-            
         }
-    }
-    
-    func loadImage() {
-        guard let selectedImage = selectedUIImage else { return }
-        image = Image(uiImage: selectedImage)
-       
     }
 }
 
+struct PhotoCell: View {
+    let image: Image?
+    
+    var body: some View {
+        HStack {
+            if let image = image {
+                image
+                    .resizable()
+                    .clipShape(Rectangle())
+                    .frame(width: 44, height: 44)
+            }
+        }.foregroundColor(Color.white)
+            .background(.blue)
+    }
+}
 
 struct MessageCell: View {
     
@@ -143,13 +178,13 @@ struct MessageCell: View {
     
     var body: some View {
         VStack{
-           /*
-                Text("\(chat.chatDay, formatter: WritingView.dateFormat)")
-                    .environment(\.locale, Locale(identifier: "ko_KR"))
-                    .padding(.top, 20)
-                    .font(.system(size: 14))
-                    .foregroundColor(.gray.opacity(0.7))
-            */
+            /*
+             Text("\(chat.chatDay, formatter: WritingView.dateFormat)")
+             .environment(\.locale, Locale(identifier: "ko_KR"))
+             .padding(.top, 20)
+             .font(.system(size: 14))
+             .foregroundColor(.gray.opacity(0.7))
+             */
             HStack{
                 Spacer()
                 Text("\(chat.chatTime, formatter: ChattingView.timeFormat)")
@@ -163,33 +198,14 @@ struct MessageCell: View {
                     .font(.system(size: 11))
                     .foregroundColor(Color.white)
                     .background(.blue)
-                    //.background(Color(hex: 0xE2B100))
                     .cornerRadius(10)
                     .shadow(color: Color.gray.opacity(0.5), radius: 10, x: 0, y: 5)
             }.padding(5)
                 .padding(.trailing, 10)
         }
     }
-    
-    
-    // 날짜가 바꼈을때만 한번만 나오게 !
-    /*
-    private func shouldDisplayDay() -> Bool {
-        guard let previousDay = UserDefaults.standard.value(forKey: "previousDay") as? Date else {
-            UserDefaults.standard.set(chat.chatDay, forKey: "previousDay")
-            return true
-        }
-        
-        if !Calendar.current.isDate(chat.chatDay, inSameDayAs: previousDay) {
-            UserDefaults.standard.set(chat.chatDay, forKey: "previousDay")
-            return true
-        }
-        
-        return false
-    }
-     */
-     
 }
+
 
 struct chatDayText: View {
     
@@ -204,6 +220,8 @@ struct chatDayText: View {
     }
 }
 
-#Preview {
-    ChattingView()
-}
+/*
+ #Preview {
+ ChattingView()
+ }
+ */

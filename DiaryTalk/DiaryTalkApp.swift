@@ -18,6 +18,7 @@ struct DiaryTalkApp: App {
     
     var body: some Scene {
         WindowGroup {
+        // PhotoTest()
             MainView()
                 .modelContainer(modelContainer)
             

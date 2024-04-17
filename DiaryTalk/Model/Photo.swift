@@ -5,14 +5,11 @@ import SwiftUI
 @Model
 class Photo: Identifiable {
     
-    @Attribute(.unique) var id = UUID()
+    @Attribute var id = UUID()
     
-    @Attribute(.externalStorage) var photo: Data?
+    @Attribute var imageData: Data
     
-    @Relationship(inverse: \PhotoTag.photo) var chattag: [PhotoTag]?
-    
-    init(photo: Data){
-        self.photo = photo
+    init(image: UIImage) {
+        self.imageData = image.jpegData(compressionQuality: 1.0) ?? Data()
     }
-    
 }
