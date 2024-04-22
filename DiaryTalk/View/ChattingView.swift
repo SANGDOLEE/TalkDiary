@@ -16,6 +16,7 @@ struct ChattingView: View {
     
     @Query var chats: [Chat]
     @Environment(\.modelContext) var modelContext
+    @Query var Photo: [Photo]
     
     @State private var chatting: [Message] = []
     @State private var newMessage: String = ""
@@ -50,7 +51,6 @@ struct ChattingView: View {
                                 .foregroundColor(.gray.opacity(0.7))
                         }
                         ForEach(chats, id:\.self) { chat in
-                            
                             MessageCell(chat: chat)
                                 .id(chat)
                         }
@@ -61,8 +61,10 @@ struct ChattingView: View {
                                 ForEach(0..<images.count, id:\.self) { i in
                                     Image(uiImage: images[i])
                                         .resizable()
-                                        .frame(width: 100, height: 100)
-                                        .clipShape(.circle)
+                                        .cornerRadius(10)
+                                        .frame(width: 140, height: 140)
+                                        .padding(.horizontal)
+                                        .padding(.top, 5)
                                 }
                             }
                         }
@@ -82,8 +84,9 @@ struct ChattingView: View {
                 
                 /// 사진 - 채팅 입력 - 전송
                 HStack {
-                    PhotosPicker("S", selection: $photosPickerItems, maxSelectionCount: 5, selectionBehavior: .ordered)
-                        .foregroundColor(.clear).padding(15)
+                    PhotosPicker("+", selection: $photosPickerItems, maxSelectionCount: 5, selectionBehavior: .ordered)
+                        .foregroundColor(.gray)
+                        .padding(20)
                         .background(
                             Circle()
                                 .foregroundColor(.white)
@@ -92,7 +95,7 @@ struct ChattingView: View {
                         .overlay(
                             Circle()
                                 .stroke(lineWidth: 1)
-                                .foregroundColor(.white)
+                                .foregroundColor(.gray.opacity(0.1))
                         )
                         .onChange(of: photosPickerItems) { _ , _ in
                             Task {
@@ -100,22 +103,24 @@ struct ChattingView: View {
                                     if let data = try? await item.loadTransferable(type: Data.self) {
                                         if let image = UIImage(data: data) {
                                             images.append(image)
+                                            // let img = DiaryTalk.Photo(imgData: data, imgTime: time)
+                                           // modelContext.insert(img)
                                         }
                                     }
                                 }
                                 photosPickerItems.removeAll()
                             }
                         }
+                    
+                    
                     TextField("", text: $newMessage)
                         .textFieldStyle(.roundedBorder)
                     
                     
                     Button{action: do {
-                        
                         saveMessage()
                         print("Chatting 배열 : \(chatting)")
-                    }
-                    }label: {
+                    }}label: {
                         Image(systemName: "paperplane")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -154,6 +159,18 @@ struct ChattingView: View {
             newMessage = ""
         }
     }
+    
+    func saveImage() async {
+        for item in photosPickerItems {
+            if let data = try? await item.loadTransferable(type: Data.self) {
+                let photo = DiaryTalk.Photo(imgData: data, imgTime: time)
+                modelContext.insert(photo)
+            }
+        }
+        photosPickerItems.removeAll()
+    }
+    
+    
 }
 
 struct PhotoCell: View {
@@ -224,4 +241,17 @@ struct chatDayText: View {
  #Preview {
  ChattingView()
  }
+ */
+
+/*
+ 
+ //                        Image(systemName: "photo")
+ //                                .resizable()
+ //                                .aspectRatio(contentMode: .fit)
+ //                                .foregroundColor(.blue)
+ //                                .frame(width: 25, height: 25)
+ //                                .clipShape(Circle())
+ //                                .padding()
+ //                                //.background(.red)
+ 
  */

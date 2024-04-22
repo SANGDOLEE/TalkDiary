@@ -69,7 +69,7 @@ struct CalenderView: View {
                     Image(systemName: "chevron.left")
                         .font(.title)
                         //.foregroundColor(canMoveToPreviousMonth() ? .black : . gray)
-                        .foregroundColor(.black)
+                        .foregroundColor(.blue)
                 }
             )
             //.disabled(!canMoveToPreviousMonth())
@@ -85,7 +85,7 @@ struct CalenderView: View {
                     Image(systemName: "chevron.right")
                         .font(.title)
                         //.foregroundColor(canMoveToNextMonth() ? .black : .gray)
-                        .foregroundColor(.black)
+                        .foregroundColor(.blue)
                 }
             )
             //.disabled(!canMoveToNextMonth())
@@ -213,7 +213,7 @@ private extension CalenderView {
         return formatter
     }()
     
-    static let weekdaySymbols: [String] = Calendar.current.shortWeekdaySymbols
+    static let weekdaySymbols: [String] = ["일", "월", "화", "수", "목", "금", "토"]
 }
 
 private extension CalenderView {
@@ -269,33 +269,6 @@ private extension CalenderView {
         self.month = adjustedMonth(by: value)
     }
     
-    /*
-    /// 이전 월로 이동 가능한지 확인
-    func canMoveToPreviousMonth() -> Bool {
-        let currentDate = Date()
-        let calendar = Calendar.current
-        let targetDate = calendar.date(byAdding: .month, value: -3, to: currentDate) ?? currentDate
-        
-        if adjustedMonth(by: -1) < targetDate {
-            return false
-        }
-        return true
-    }
-    */
-    
-    /*
-    /// 다음 월로 이동 가능한지 확인
-    func canMoveToNextMonth() -> Bool {
-        let currentDate = Date()
-        let calendar = Calendar.current
-        let targetDate = calendar.date(byAdding: .month, value: 3, to: currentDate) ?? currentDate
-        
-        if adjustedMonth(by: 1) > targetDate {
-            return false
-        }
-        return true
-    }
-    */
     
     /// 변경하려는 월 반환
     func adjustedMonth(by value: Int) -> Date {

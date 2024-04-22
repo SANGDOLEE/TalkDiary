@@ -10,6 +10,7 @@ struct MainView: View {
     
     @State private var multiSelection = Set<UUID>()
     
+    
     // var memo: Memo
     // Search Bar
     @State private var searchText = "" // search Text
@@ -69,17 +70,17 @@ struct MainView: View {
                                 HStack {
                                     Spacer()
                                     Menu(content: {
-                                        /*
+                                       
                                          HStack{
-                                         NavigationLink(destination: WritingView()
+                                         NavigationLink(destination: CalendarView()
                                          .toolbarRole(.editor) // NavigationBackbutton label 끄기
                                          ) {
-                                         Text("Add new")
+                                         Text("Calendar")
                                          .foregroundColor(.black)
-                                         Image(systemName: "plus")
+                                         Image(systemName: "calendar")
                                          }
                                          }
-                                         
+                                         /*
                                          Button(action: {
                                          
                                          }, label: {
@@ -172,14 +173,15 @@ struct MemoCellView: View {
             Text("\(memo.time, formatter: WritingView.monthDayFormat)")
                 .foregroundColor(.gray.opacity(0.7))
                 .font(.system(size: 14))
+            Image(systemName: "chevron.right")
+                .foregroundColor(.gray.opacity(0.7))
+                .font(.system(size:14))
             
         }
         .padding()
         .frame(maxWidth: .infinity, minHeight: 35) // 고정된 크기 적용
-        // .padding(10)
         .background(Color.white)
         .cornerRadius(10)
-        // .padding(5)
         .contextMenu {
             Button(action: {
                 onDelete()

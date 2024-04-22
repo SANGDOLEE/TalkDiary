@@ -5,11 +5,13 @@ import SwiftUI
 @Model
 class Photo: Identifiable {
     
-    @Attribute var id = UUID()
+    @Attribute(.unique) var id = UUID()
+
+    @Attribute(.externalStorage) var imgData: Data?
+    var imgTime: Date = Date()
     
-    @Attribute var imageData: Data
-    
-    init(image: UIImage) {
-        self.imageData = image.jpegData(compressionQuality: 1.0) ?? Data()
+    init(imgData: Data?, imgTime: Date) {
+        self.imgData = imgData
+        self.imgTime = imgTime
     }
 }
