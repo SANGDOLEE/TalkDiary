@@ -1,7 +1,5 @@
-<h1> 오늘의 음식</h1>
-<img src="https://github.com/SANGDOLEE/TodaysFood/assets/108053426/f87759fb-59a3-454c-95b3-7c80afabff31" width="200px;" alt=""/>
-<br/>
 
+<img src="https://github.com/SANGDOLEE/NC1_DiaryTalk/assets/108053426/3fd982ae-bf51-4a4b-9252-db60c11b8f40" width="1000px;" alt=""/>
 
 <h1> TalkDiary </h1>
 <p> 개발기간 : 2024.04.14 ~ 2024.04.18 </p>
@@ -32,43 +30,8 @@
 
 <br/>
 
-<h1> 화면 구성 </h1>
-<!-- 첫번째 테이블 -->
-<table>
-   <tbody>
-    <tr>
-      <td colspan="1" align="center"><b> 시작 화면 </b></td>
-    </tr>
-    <tr>
-      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/TodaysFood/assets/108053426/13fb3384-8f9d-4f84-81d0-bd274e9bb54a" width="310px;" alt=""/><br /><sub><b></b></sub></a></td>
-    </tr>
-</table>
-<!-- 두번째 테이블 -->
-<table>
-  <tbody>
-    <tr>
-      <td colspan="1" align="center"><b>메인 화면 1</b></td>
-      <td colspan="1" align="center"><b>메인 화면 2</b></td>
-      <td colspan="1" align="center"><b>메인 화면 3</b></td>
-    </tr>
-    <tr>
-      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/TodaysFood/assets/108053426/52b7f221-76b6-49c5-ba6f-d33a0cb331bf" width="400px;" alt=""/><br /><sub><b></b></sub></a></td>
-      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/TodaysFood/assets/108053426/bd4e9576-578c-409d-a42e-2c61cb001f80" width="400px;" alt=""/><br /><sub><b></b></sub></a></td>
-      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/TodaysFood/assets/108053426/17a82582-4ce2-45be-a7b3-e7091b770962d" width="400px;" alt=""/><br /><sub><b></b></sub></a></td>
-    </tr>
-  </tbody>
-</table>
-<!-- 세번째 테이블 -->
-<table>
-   <tbody>
-   <tr>
-      <td colspan="1" align="center"><b> 나의 메뉴판 화면 </b></td>
-    </tr>
-    <tr>
-      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/TodaysFood/assets/108053426/91719991-c1b2-466a-9d01-e2c7205941e6" width="310px;" alt=""/><br /><sub><b></b></sub></a></td>
-    </tr>
-   </tbody>
-</table>
+<h1> Main Flow </h1>
+<img src="https://github.com/SANGDOLEE/NC1_DiaryTalk/assets/108053426/33754eb2-a68b-4b29-b5e5-c58e11cb2fbe" width="1000px;" alt=""/>
 
 
 <br/>
