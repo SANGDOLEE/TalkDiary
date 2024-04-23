@@ -104,7 +104,7 @@ struct ChattingView: View {
                                         if let image = UIImage(data: data) {
                                             images.append(image)
                                             // let img = DiaryTalk.Photo(imgData: data, imgTime: time)
-                                           // modelContext.insert(img)
+                                            // modelContext.insert(img)
                                         }
                                     }
                                 }
@@ -125,19 +125,20 @@ struct ChattingView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .foregroundColor(newMessage.isEmpty ? .gray : .blue)
-                        
                             .frame(width: 20, height: 20)
-                    }.disabled(newMessage.isEmpty) // 텍스트 비어있으면 비활성화
-                        .padding(15)
-                        .background(
-                            Circle()
-                                .foregroundColor(.white)
-                                .shadow(color: .gray, radius: 1, x: 1, y: 1)
-                        )
+                    }
+                    .disabled(newMessage.isEmpty) // 텍스트 비어있으면 비활성화
+                    .padding(15)
+                    .background(
+                        Circle()
+                            .foregroundColor(.white)
+                            .shadow(color: .gray, radius: 1, x: 1, y: 1)
+                    )
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
-            } .toolbar {
+            }
+            .toolbar {
                 ToolbarItem(placement: .principal) {
                     Image(systemName: "bonjour")
                 }
@@ -169,8 +170,6 @@ struct ChattingView: View {
         }
         photosPickerItems.removeAll()
     }
-    
-    
 }
 
 struct PhotoCell: View {
@@ -184,8 +183,9 @@ struct PhotoCell: View {
                     .clipShape(Rectangle())
                     .frame(width: 44, height: 44)
             }
-        }.foregroundColor(Color.white)
-            .background(.blue)
+        }
+        .foregroundColor(Color.white)
+        .background(.blue)
     }
 }
 
@@ -241,17 +241,4 @@ struct chatDayText: View {
  #Preview {
  ChattingView()
  }
- */
-
-/*
- 
- //                        Image(systemName: "photo")
- //                                .resizable()
- //                                .aspectRatio(contentMode: .fit)
- //                                .foregroundColor(.blue)
- //                                .frame(width: 25, height: 25)
- //                                .clipShape(Circle())
- //                                .padding()
- //                                //.background(.red)
- 
  */

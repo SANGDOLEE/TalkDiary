@@ -46,7 +46,6 @@ struct SelectMoodView: View {
         NavigationView{
             VStack{
                 VStack{
-                    
                     HStack{
                         Spacer()
                         Button(action: {
@@ -56,16 +55,10 @@ struct SelectMoodView: View {
                                 .resizable()
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(.gray)
-                            /*
-                             Image(systemName: "multiply")
-                             .resizable()
-                             .frame(width: 25, height: 25)
-                             */
                             
-                        }).padding(.trailing, 10)
-                            .padding(.top, 10)
-                        
-                        
+                        })
+                        .padding(.trailing, 10)
+                        .padding(.top, 10)
                     }
                     Text("오늘의 기분이 어떠신가요?")
                         .bold()
@@ -95,7 +88,6 @@ struct SelectMoodView: View {
                         }
                     }
                     .padding()
-                    
                 }
             }
         }

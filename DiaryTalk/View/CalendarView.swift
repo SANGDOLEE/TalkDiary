@@ -1,9 +1,3 @@
-//
-//  SettingVie.swift
-//  DiaryTalk
-//
-//  Created by 이상도 on 4/12/24.
-//
 
 import Foundation
 import SwiftUI
@@ -14,11 +8,10 @@ struct CalendarView: View {
         NavigationStack{
             ScrollView{
                 VStack{
+                    
                     HStack{
                         CalenderView()
-                        
                     }
-                    
                     
                     HStack{
                         Text("이번달 일기")
@@ -28,12 +21,11 @@ struct CalendarView: View {
                         Text("올해 일기 ")
                             .bold()
                             .font(.title)
-                    }.padding()
-                    
+                    }
+                    .padding()
                     
                     GeometryReader { geometry in
                         HStack {
-                            // 첫 번째 HStack
                             HStack {
                                 Spacer()
                                 Text("3")
@@ -51,7 +43,7 @@ struct CalendarView: View {
                                 Text("hh")
                                     .padding()
                                     .bold()
-                                    
+                                
                                 Spacer()
                             }
                             .background(Color.white)
@@ -59,19 +51,13 @@ struct CalendarView: View {
                             .frame(width: geometry.size.width / 2, height: 35) // 크기를 명시적으로 설정
                         }
                     }
-
-                    
                     Spacer()
-                    
                 }.padding()
-                    
-                
-                
-            }.background(Color(hex:0xEAEAEC))
-                .navigationTitle("History")
+            }
+            .background(Color(hex:0xEAEAEC))
+            .navigationTitle("History")
         }
     }
-    
 }
 
 #Preview{

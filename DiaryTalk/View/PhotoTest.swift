@@ -1,9 +1,3 @@
-//
-//  PhotoTest.swift
-//  DiaryTalk
-//
-//  Created by 이상도 on 4/17/24.
-//
 
 import Foundation
 import SwiftUI
@@ -58,5 +52,4 @@ public extension UITextField {
             ].compactMapValues { $0 }
         )
     }
-    
 }

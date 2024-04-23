@@ -57,7 +57,6 @@ struct WritingView: View {
                                 Text("🫥")
                                     .font(.system(size: 30))
                                     .foregroundColor(.black)
-                                //.foregroundColor(Color(hex: 0xE2B100))
                             } else { // 선택된 Emoji가 있으면 해당 Emoji 표시
                                 Text(selectedEmoji)
                                     .font(.system(size: 30))
@@ -136,7 +135,6 @@ struct WritingView: View {
                 }.onTapGesture {
                     doneStatus = true
                 }
-                //.padding()
                 .toolbar {
                     
                     Button(action: {
@@ -156,7 +154,6 @@ struct WritingView: View {
                     }, label: {
                         Text(doneStatus ? "Done" : "Edit")
                             .bold()
-                            //.foregroundColor(Color(hex: 0xE2B100))
                     }).alert(isPresented: $showAlert) {
                         Alert(title: Text("알림"), message: Text("제목 혹은 내용을 작성해주세요."), dismissButton: .default(Text("OK")))
                     }
@@ -164,11 +161,11 @@ struct WritingView: View {
             }
         }
         //.navigationBarBackButtonHidden(doneStatus) // doneStatus가 false일 때 뒤로 가기 버튼 나오게
-            .onDisappear(){
-                if !memoTitle.isEmpty || !memoContent.isEmpty { // title or content가 하나라도 있어야 저장
-                    addMemo() // Done을 누르면 최종 Text가 저장만되고 나갈 떄 저장됨 ( 나중에 수정하면 좋다.. )
-                }
+        .onDisappear(){
+            if !memoTitle.isEmpty || !memoContent.isEmpty { // title or content가 하나라도 있어야 저장
+                addMemo() // Done을 누르면 최종 Text가 저장만되고 나갈 떄 저장됨 ( 나중에 수정하면 좋다.. )
             }
+        }
         
     }
     
@@ -177,9 +174,9 @@ struct WritingView: View {
         modelContext.insert(memo)
     }
     
-//    func deleteMemo(_ memo: Memo) {
-//        modelContext.delete(memo)
-//    }
+    //    func deleteMemo(_ memo: Memo) {
+    //        modelContext.delete(memo)
+    //    }
 }
 
 #Preview {
