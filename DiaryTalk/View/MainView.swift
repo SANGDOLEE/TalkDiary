@@ -100,6 +100,7 @@ struct MainView: View {
         .searchable(text: $searchText, prompt: "") // Search Bar
     }
     
+    // 삭제
     func deleteMemo(_ memo: Memo) {
         modelContext.delete(memo)
     }
