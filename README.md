@@ -1,5 +1,5 @@
 
-<img src="https://github.com/SANGDOLEE/NC1_DiaryTalk/assets/108053426/3fd982ae-bf51-4a4b-9252-db60c11b8f40" width="1000px;" alt=""/>
+<img src="https://github.com/SANGDOLEE/TalkDiary/assets/108053426/b373c6de-2a31-4978-a280-617473fb7732" width="1000px;" alt=""/>
 
 <h1> TalkDiary </h1>
 <p> 개발기간 : 2024.04.14 ~ 2024.04.18 </p>
@@ -20,7 +20,7 @@
 <br/>
 
 <h1> Main Flow </h1>
-<img src="https://github.com/SANGDOLEE/NC1_DiaryTalk/assets/108053426/33754eb2-a68b-4b29-b5e5-c58e11cb2fbe" width="1000px;" alt=""/>
+<img src="https://github.com/SANGDOLEE/TalkDiary/assets/108053426/206f298d-40e5-44a4-a6d2-5427e1633543" width="1000px;" alt=""/>
 
 
 <br/>
