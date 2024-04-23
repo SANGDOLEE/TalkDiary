@@ -1,7 +1,7 @@
 
 <img src="https://github.com/SANGDOLEE/TalkDiary/assets/108053426/206f298d-40e5-44a4-a6d2-5427e1633543" width="1000px;" alt=""/>
 
-<h1> TalkDiary </h1>
+<h1> TalkDiary📓 </h1>
 <p> 개발기간 : 2024.04.14 ~ 2024.04.18 </p>
 <p> 짧은 톡으로 나에게 감정, 일정을 기록하고 일기를 쓰는 앱</p>
 
